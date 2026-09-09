@@ -4,6 +4,8 @@ import { useWordleStore } from "../Stores/wordleStore";
 import WordleBoard from "../components/WordleBoard";
 import WordleFooter from "../components/WordleFooter";
 import WordleHeader from "../components/WordleHeader";
+import WinningCard from "~/components/WinningCard";
+import LostCard from "~/components/LostCard";
 
 export default function WordlePage() {
   const [gameId, setGameId] = useState<string | null>(null);
@@ -35,12 +37,22 @@ export default function WordlePage() {
     <main className="flex min-h-screen flex-col px-4 pb-4 pt-0">
       <div className="flex min-h-0 flex-1 flex-col items-center">
         <WordleHeader />
+        {storedGuess.gameFinished && (
+          storedGuess.won ? (
+            <WinningCard gameId={gameId} />
+          ) : (
+            <LostCard />
+          )
+        )}
+
         {startError ? (
           <p className="pt-10 text-red-400">{startError}</p>
         ) : gameId ? (
           <WordleBoard
             guesses={storedGuess.guesses}
             letters={storedGuess.letters}
+            currentGuess={storedGuess.currentGuess}
+            shakeRow={storedGuess.shakeRow}
           />
         ) : (
           <p className="pt-10 text-neutral-400">Iniciando jogo...</p>

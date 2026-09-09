@@ -39,6 +39,18 @@ export function useWordleStore(gameId: string | null) {
       }));
     } catch (error) {
       console.error("Erro ao enviar uma tentativa:", error);
+
+      setStoredGuess((previousState) => ({
+        ...previousState,
+        shakeRow: previousState.currentGuess,
+      }));
+
+      window.setTimeout(() => {
+        setStoredGuess((previousState) => ({
+          ...previousState,
+          shakeRow: null,
+        }));
+      }, 380);
     } finally {
       isSubmitting.current = false;
     }

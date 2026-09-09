@@ -1,9 +1,10 @@
 type GridProps = {
     guess: string;
     statuses?: LetterResult[];
+    shakeRow?: boolean;
 };
 
-export default function Grid({ guess, statuses = [] }: GridProps) {
+export default function Grid({ guess, statuses = [], shakeRow = false }: GridProps) {
     const getCellClassName = (index: number) => {
         const status = statuses[index]?.status;
 
@@ -23,7 +24,7 @@ export default function Grid({ guess, statuses = [] }: GridProps) {
     };
 
     return (
-        <div className="grid grid-cols-5 gap-1">
+        <div className={`grid grid-cols-5 gap-1 ${shakeRow ? "grid-shake" : ""}`}>
             {new Array(5).fill(0).map((_, index) => (
                 <div className={getCellClassName(index)} key={index}>
                     {guess[index]}

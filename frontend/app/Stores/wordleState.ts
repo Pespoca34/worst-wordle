@@ -4,6 +4,7 @@ export type WordleState = {
   won: boolean;
   gameFinished: boolean;
   letters: LetterResult[][];
+  shakeRow: number | null;
 };
 
 export const createInitialWordleState = (): WordleState => ({
@@ -12,6 +13,7 @@ export const createInitialWordleState = (): WordleState => ({
   won: false,
   gameFinished: false,
   letters: [],
+  shakeRow: null,
 });
 
 export function addLetter(
