@@ -13,3 +13,144 @@ body {
     color-scheme: dark;
   }
 }
+
+.winner-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.confetti-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  top: -30px;
+  width: 10px;
+  height: 16px;
+  border-radius: 4px;
+  opacity: 0.96;
+  animation: confettiFall 1200ms linear infinite;
+}
+
+.confetti-1 {
+  left: 10%;
+  background: #86efac;
+  animation-delay: 0s;
+}
+
+.confetti-2 {
+  left: 20%;
+  background: #fda4af;
+  animation-delay: 180ms;
+}
+
+.confetti-3 {
+  left: 35%;
+  background: #fde68a;
+  animation-delay: 360ms;
+}
+
+.confetti-4 {
+  left: 55%;
+  background: #93c5fd;
+  animation-delay: 540ms;
+}
+
+.confetti-5 {
+  left: 70%;
+  background: #c4b5fd;
+  animation-delay: 720ms;
+}
+
+.confetti-6 {
+  left: 82%;
+  background: #fbbf24;
+  animation-delay: 900ms;
+}
+
+.winner-card {
+  position: relative;
+  z-index: 2;
+  width: min(420px, calc(100vw - 32px));
+  padding: 2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(52, 211, 153, 0.6);
+  background: #171717;
+  color: white;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+  animation: popIn 500ms ease-out;
+}
+
+.winner-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  color: #86efac;
+  border: 1px solid rgba(134, 239, 172, 0.7);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.game-id-box {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #444;
+  background: rgba(38, 38, 38, 0.9);
+}
+
+.game-id-box p {
+  margin: 0;
+  font-size: 12px;
+  color: #a3a3a3;
+}
+
+.game-id-box .text-emerald-300 {
+  color: #86efac;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.82) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.96;
+  }
+  100% {
+    transform: translateY(90vh) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+.grid-shake {
+  animation: shakeRow 360ms ease-in-out;
+}
+
+@keyframes shakeRow {
+  12%, 74% { transform: translateX(-4px) rotate(-1deg); }
+  25%, 87% { transform: translateX(4px) rotate(1deg); }
+  38% { transform: translateX(-3px) rotate(-1deg); }
+  51% { transform: translateX(3px) rotate(1deg); }
+  64% { transform: translateX(0) rotate(0deg); }
+}
